@@ -23,11 +23,11 @@ import StopIcon from "../icons/pause.svg";
 
 import {
   BOT_HELLO,
+  createMessage,
   DEFAULT_TOPIC,
   Message,
   SubmitKey,
   Theme,
-  createMessage,
   useAccessStore,
   useAppConfig,
   useChatStore,
@@ -718,11 +718,11 @@ export function Chat() {
                     <MaskAvatar mask={session.mask} />
                   )}
                 </div>
-                {showTyping && (
+                {/* {showTyping && (
                   <div className={styles["chat-message-status"]}>
                     {Locale.Chat.Typing}
                   </div>
-                )}
+                )} */}
                 <div className={styles["chat-message-item"]}>
                   {showActions && (
                     <div className={styles["chat-message-top-actions"]}>
