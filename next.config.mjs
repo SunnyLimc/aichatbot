@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+
+  // add basePath for personal use 
+  basePath: '/chat',
+
   experimental: {
     appDir: true,
   },

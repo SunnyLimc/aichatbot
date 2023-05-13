@@ -1,7 +1,7 @@
 name: Upstream Sync
 
-permissions:
-  contents: write
+# permissions:
+#   contents: write
 
 on:
   schedule:
@@ -30,11 +30,16 @@ jobs:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }} # automatically generated, no need to set
 
           # Set test_mode true to run tests instead of the true action!!
-          test_mode: false
+          test_mode: true
 
       - name: Sync check
         if: failure()
         run: |
-          echo "::error::由于权限不足，导致同步失败（这是预期的行为），请前往仓库首页手动执行[Sync fork]。"
           echo "::error::Due to insufficient permissions, synchronization failed (as expected). Please go to the repository homepage and manually perform [Sync fork]."
           exit 1
+
+notifications:
+  email:
+    if: failure()
+    recipients:
+      - ${{ secrets.EMAIL }}$
