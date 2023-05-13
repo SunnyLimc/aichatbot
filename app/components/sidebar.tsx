@@ -6,7 +6,6 @@ import AddIcon from "../icons/add.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
-import PluginIcon from "../icons/plugin.svg";
 import SettingsIcon from "../icons/settings.svg";
 import { IconButton } from "./button";
 
@@ -24,7 +23,6 @@ import {
 import dynamic from "next/dynamic";
 import { Link, useNavigate } from "react-router-dom";
 import { useMobileScreen } from "../utils";
-import { showToast } from "./ui-lib";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -134,13 +132,13 @@ export function SideBar(props: { className?: string }) {
           onClick={() => navigate(Path.NewChat, { state: { fromHome: true } })}
           shadow
         />
-        <IconButton
+        {/* <IconButton
           icon={<PluginIcon />}
           text={shouldNarrow ? undefined : Locale.Plugin.Name}
           className={styles["sidebar-bar-button"]}
           onClick={() => showToast(Locale.WIP)}
           shadow
-        />
+        /> */}
       </div>
 
       <div
