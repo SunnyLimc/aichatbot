@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import "./styles/globals.scss";
-import "./styles/markdown.scss";
-import "./styles/highlight.scss";
 import { getBuildConfig } from "./config/build";
+import "./styles/globals.scss";
+import "./styles/highlight.scss";
+import "./styles/markdown.scss";
 
 const buildConfig = getBuildConfig();
 
 export const metadata = {
-  title: "ChatGPT Next Web",
-  description: "Your personal ChatGPT Chat Bot.",
+  title: "AI ChatBot",
+  description: "Your personal AI Chat Bot.",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -19,7 +19,7 @@ export const metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "ChatGPT Next Web",
+    title: "AI ChatBot",
     statusBarStyle: "default",
   },
 };
