@@ -32,7 +32,7 @@ const tw: LocaleType = {
     Send: "發送",
     Config: {
       Reset: "重置默认",
-      SaveAs: "另存为面具",
+      SaveAs: "另存为预设角色",
     },
   },
   Export: {
@@ -104,8 +104,8 @@ const tw: LocaleType = {
       SubTitle: "在预览气泡中预览 Markdown 内容",
     },
     Mask: {
-      Title: "面具启动页",
-      SubTitle: "新建聊天时，展示面具启动页",
+      Title: "预设角色启动页",
+      SubTitle: "新建聊天时，展示预设角色启动页",
     },
     Prompt: {
       Disable: {
@@ -190,11 +190,11 @@ const tw: LocaleType = {
   },
   Plugin: { Name: "插件" },
   Mask: {
-    Name: "面具",
+    Name: "预设角色",
     Page: {
-      Title: "预设角色面具",
+      Title: "预设角色预设角色",
       SubTitle: (count: number) => `${count} 个预设角色定义`,
-      Search: "搜索角色面具",
+      Search: "搜索角色预设角色",
       Create: "新建",
     },
     Item: {
@@ -207,7 +207,7 @@ const tw: LocaleType = {
     },
     EditModal: {
       Title: (readonly: boolean) =>
-        `编辑预设面具 ${readonly ? "（只读）" : ""}`,
+        `编辑默认预设角色 ${readonly ? "（只读）" : ""}`,
       Download: "下载预设",
       Clone: "克隆预设",
     },
@@ -219,8 +219,8 @@ const tw: LocaleType = {
   NewChat: {
     Return: "返回",
     Skip: "跳过",
-    Title: "挑选一个面具",
-    SubTitle: "现在开始，与面具背后的灵魂思维碰撞",
+    Title: "挑选一个预设角色",
+    SubTitle: "现在开始，与预设角色背后的灵魂思维碰撞",
     More: "搜索更多",
     NotShow: "不再展示",
     ConfirmNoShow: "确认禁用？禁用后可以随时在设置中重新启用。",
