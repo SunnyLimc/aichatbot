@@ -3,7 +3,7 @@
 const nextConfig = {
 
   // add basePath for personal use 
-  basePath: '/chat',
+  basePath: '/chat/',
 
   experimental: {
     appDir: true,
