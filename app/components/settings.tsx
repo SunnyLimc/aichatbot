@@ -1,15 +1,15 @@
-import { useState, useEffect, useMemo, HTMLProps, useRef } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import styles from "./settings.module.scss";
 
-import ResetIcon from "../icons/reload.svg";
 import AddIcon from "../icons/add.svg";
+import ClearIcon from "../icons/clear.svg";
 import CloseIcon from "../icons/close.svg";
 import CopyIcon from "../icons/copy.svg";
-import ClearIcon from "../icons/clear.svg";
-import LoadingIcon from "../icons/three-dots.svg";
 import EditIcon from "../icons/edit.svg";
 import EyeIcon from "../icons/eye.svg";
+import ResetIcon from "../icons/reload.svg";
+import { ModelConfigList } from "./model-config";
 import {
   Input,
   List,
@@ -19,27 +19,25 @@ import {
   Popover,
   Select,
 } from "./ui-lib";
-import { ModelConfigList } from "./model-config";
 
-import { IconButton } from "./button";
 import {
   SubmitKey,
-  useChatStore,
   Theme,
-  useUpdateStore,
   useAccessStore,
   useAppConfig,
+  useChatStore,
+  useUpdateStore,
 } from "../store";
+import { IconButton } from "./button";
 
+import { useNavigate } from "react-router-dom";
+import { Path } from "../constant";
 import Locale, { AllLangs, changeLang, getLang } from "../locales";
-import { copyToClipboard } from "../utils";
-import Link from "next/link";
-import { Path, UPDATE_URL } from "../constant";
 import { Prompt, SearchService, usePromptStore } from "../store/prompt";
+import { copyToClipboard } from "../utils";
+import { Avatar, AvatarPicker } from "./emoji";
 import { ErrorBoundary } from "./error";
 import { InputRange } from "./input-range";
-import { useNavigate } from "react-router-dom";
-import { Avatar, AvatarPicker } from "./emoji";
 
 function EditPromptModal(props: { id: number; onClose: () => void }) {
   const promptStore = usePromptStore();
@@ -350,7 +348,7 @@ export function Settings() {
             </Popover>
           </ListItem>
 
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
             subTitle={
               checkingUpdate
@@ -373,7 +371,7 @@ export function Settings() {
                 onClick={() => checkUpdate(true)}
               />
             )}
-          </ListItem>
+          </ListItem> */}
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select
