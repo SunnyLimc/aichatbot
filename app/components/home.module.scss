@@ -360,6 +360,9 @@
   flex-direction: row-reverse;
 }
 
+.chat-message-user-typing {
+  mix-blend-mode: difference;
+}
 .chat-message-container {
   max-width: var(--message-max-width);
   display: flex;

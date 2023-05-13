@@ -1,16 +1,16 @@
-import ReactMarkdown from "react-markdown";
 import "katex/dist/katex.min.css";
-import RemarkMath from "remark-math";
-import RemarkBreaks from "remark-breaks";
-import RehypeKatex from "rehype-katex";
-import RemarkGfm from "remark-gfm";
-import RehypeHighlight from "rehype-highlight";
-import { useRef, useState, RefObject, useEffect } from "react";
-import { copyToClipboard } from "../utils";
 import mermaid from "mermaid";
+import { RefObject, useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import RehypeHighlight from "rehype-highlight";
+import RehypeKatex from "rehype-katex";
+import RemarkBreaks from "remark-breaks";
+import RemarkGfm from "remark-gfm";
+import RemarkMath from "remark-math";
+import { copyToClipboard } from "../utils";
 
-import LoadingIcon from "../icons/three-dots.svg";
 import React from "react";
+import LoadingIcon from "../icons/three-dots.svg";
 
 export function Mermaid(props: { code: string; onError: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -123,6 +123,7 @@ export function Markdown(
     fontSize?: number;
     parentRef: RefObject<HTMLDivElement>;
     defaultShow?: boolean;
+    usertyping?: boolean;
   } & React.DOMAttributes<HTMLDivElement>,
 ) {
   const mdRef = useRef<HTMLDivElement>(null);
@@ -164,6 +165,7 @@ export function Markdown(
           !inView.current && renderedHeight.current > 0
             ? renderedHeight.current
             : "auto",
+        mixBlendMode: props.usertyping ? "difference" : "initial",
       }}
       ref={mdRef}
       onContextMenu={props.onContextMenu}

@@ -1,63 +1,63 @@
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
 
-import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
-import RenameIcon from "../icons/rename.svg";
-import ExportIcon from "../icons/share.svg";
-import ReturnIcon from "../icons/return.svg";
 import CopyIcon from "../icons/copy.svg";
 import DownloadIcon from "../icons/download.svg";
-import LoadingIcon from "../icons/three-dots.svg";
-import PromptIcon from "../icons/prompt.svg";
 import MaskIcon from "../icons/mask.svg";
 import MaxIcon from "../icons/max.svg";
 import MinIcon from "../icons/min.svg";
+import PromptIcon from "../icons/prompt.svg";
 import ResetIcon from "../icons/reload.svg";
+import RenameIcon from "../icons/rename.svg";
+import ReturnIcon from "../icons/return.svg";
+import SendWhiteIcon from "../icons/send-white.svg";
+import ExportIcon from "../icons/share.svg";
+import LoadingIcon from "../icons/three-dots.svg";
 
-import LightIcon from "../icons/light.svg";
-import DarkIcon from "../icons/dark.svg";
 import AutoIcon from "../icons/auto.svg";
 import BottomIcon from "../icons/bottom.svg";
+import DarkIcon from "../icons/dark.svg";
+import LightIcon from "../icons/light.svg";
 import StopIcon from "../icons/pause.svg";
 
 import {
+  BOT_HELLO,
+  DEFAULT_TOPIC,
   Message,
   SubmitKey,
-  useChatStore,
-  BOT_HELLO,
+  Theme,
   createMessage,
   useAccessStore,
-  Theme,
   useAppConfig,
-  DEFAULT_TOPIC,
+  useChatStore,
 } from "../store";
 
 import {
+  autoGrowTextArea,
   copyToClipboard,
   downloadAs,
   selectOrCopy,
-  autoGrowTextArea,
   useMobileScreen,
 } from "../utils";
 
 import dynamic from "next/dynamic";
 
+import Locale from "../locales";
 import { ControllerPool } from "../requests";
 import { Prompt, usePromptStore } from "../store/prompt";
-import Locale from "../locales";
 
 import { IconButton } from "./button";
-import styles from "./home.module.scss";
 import chatStyle from "./chat.module.scss";
+import styles from "./home.module.scss";
 
-import { ListItem, Modal, showModal } from "./ui-lib";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useCommand } from "../command";
 import { LAST_INPUT_KEY, Path } from "../constant";
+import { useMaskStore } from "../store/mask";
 import { Avatar } from "./emoji";
 import { MaskAvatar, MaskConfig } from "./mask";
-import { useMaskStore } from "../store/mask";
-import { useCommand } from "../command";
+import { ListItem, Modal, showModal } from "./ui-lib";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -772,6 +772,7 @@ export function Chat() {
                     fontSize={fontSize}
                     parentRef={scrollRef}
                     defaultShow={i >= messages.length - 10}
+                    usertyping={isUser && showTyping}
                   />
                 </div>
                 {!isUser && !message.preview && (
