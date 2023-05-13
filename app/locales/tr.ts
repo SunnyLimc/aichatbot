@@ -28,7 +28,7 @@ const tr: LocaleType = {
       if (submitKey === String(SubmitKey.Enter)) {
         inputHints += ", kaydırmak için Shift + Enter";
       }
-      return inputHints + ", komutları aramak için / (eğik çizgi)";
+      return inputHints;
     },
     Send: "Gönder",
     Config: {

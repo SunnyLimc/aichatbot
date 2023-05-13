@@ -28,7 +28,7 @@ const ru: LocaleType = {
       if (submitKey === String(SubmitKey.Enter)) {
         inputHints += ", Shift + Enter для переноса строки";
       }
-      return inputHints + ", / для поиска подсказок";
+      return inputHints;
     },
     Send: "Отправить",
     Config: {

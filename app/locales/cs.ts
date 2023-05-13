@@ -28,7 +28,7 @@ const cs: LocaleType = {
       if (submitKey === String(SubmitKey.Enter)) {
         inputHints += ", Shift + Enter pro řádkování";
       }
-      return inputHints + ", / pro vyhledávání pokynů";
+      return inputHints;
     },
     Send: "Odeslat",
     Config: {

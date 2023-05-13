@@ -28,7 +28,7 @@ const jp: LocaleType = {
       if (submitKey === String(SubmitKey.Enter)) {
         inputHints += "，Shift + Enter で改行";
       }
-      return inputHints + "，/ で自動補完をトリガー";
+      return inputHints;
     },
     Send: "送信",
     Config: {

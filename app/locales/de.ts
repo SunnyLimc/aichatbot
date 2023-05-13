@@ -28,7 +28,7 @@ const de: LocaleType = {
       if (submitKey === String(SubmitKey.Enter)) {
         inputHints += ", Umschalt + Eingabe für Zeilenumbruch";
       }
-      return inputHints + ", / zum Durchsuchen von Prompts";
+      return inputHints;
     },
     Send: "Senden",
     Config: {

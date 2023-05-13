@@ -28,7 +28,7 @@ const vi: LocaleType = {
       if (submitKey === String(SubmitKey.Enter)) {
         inputHints += ", Shift + Enter để xuống dòng";
       }
-      return inputHints + ", / để tìm kiếm mẫu gợi ý";
+      return inputHints;
     },
     Send: "Gửi",
     Config: {
