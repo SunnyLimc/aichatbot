@@ -1,14 +1,14 @@
 import CN from "./cn";
+import CS from "./cs";
+import DE from "./de";
 import EN from "./en";
-import TW from "./tw";
 import ES from "./es";
 import IT from "./it";
-import TR from "./tr";
 import JP from "./jp";
-import DE from "./de";
-import VI from "./vi";
 import RU from "./ru";
-import CS from "./cs";
+import TR from "./tr";
+import TW from "./tw";
+import VI from "./vi";
 
 export type { LocaleType } from "./cn";
 
@@ -28,7 +28,7 @@ export const AllLangs = [
 export type Lang = (typeof AllLangs)[number];
 
 const LANG_KEY = "lang";
-const DEFAULT_LANG = "en";
+const DEFAULT_LANG = "cn";
 
 function getItem(key: string) {
   try {
