@@ -4,7 +4,6 @@ import { useDebouncedCallback } from "use-debounce";
 import BrainIcon from "../icons/brain.svg";
 import CopyIcon from "../icons/copy.svg";
 import DownloadIcon from "../icons/download.svg";
-import MaskIcon from "../icons/mask.svg";
 import MaxIcon from "../icons/max.svg";
 import MinIcon from "../icons/min.svg";
 import PromptIcon from "../icons/prompt.svg";
@@ -381,14 +380,14 @@ export function ChatActions(props: {
         <PromptIcon />
       </div>
 
-      <div
+      {/* <div
         className={`${chatStyle["chat-input-action"]} clickable`}
         onClick={() => {
           navigate(Path.Masks);
         }}
       >
         <MaskIcon />
-      </div>
+      </div> */}
     </div>
   );
 }

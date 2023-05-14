@@ -1,22 +1,21 @@
-import DeleteIcon from "../icons/delete.svg";
-import BotIcon from "../icons/bot.svg";
+import ClearIcon from "../icons/clear.svg";
 
-import styles from "./home.module.scss";
 import {
   DragDropContext,
-  Droppable,
   Draggable,
+  Droppable,
   OnDragEndResponder,
 } from "@hello-pangea/dnd";
+import styles from "./home.module.scss";
 
 import { useChatStore } from "../store";
 
-import Locale from "../locales";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
-import { MaskAvatar } from "./mask";
+import Locale from "../locales";
 import { Mask } from "../store/mask";
-import { useRef, useEffect } from "react";
+import { MaskAvatar } from "./mask";
 
 export function ChatItem(props: {
   onClick?: () => void;
@@ -83,7 +82,7 @@ export function ChatItem(props: {
             className={styles["chat-item-delete"]}
             onClickCapture={props.onDelete}
           >
-            <DeleteIcon />
+            <ClearIcon />
           </div>
         </div>
       )}

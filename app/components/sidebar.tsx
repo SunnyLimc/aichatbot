@@ -4,7 +4,7 @@ import styles from "./home.module.scss";
 
 import AddIcon from "../icons/add.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
-import CloseIcon from "../icons/close.svg";
+import ClearIcon from "../icons/clear.svg";
 import MaskIcon from "../icons/mask.svg";
 import SettingsIcon from "../icons/settings.svg";
 import { IconButton } from "./button";
@@ -126,10 +126,17 @@ export function SideBar(props: { className?: string }) {
 
       <div className={styles["sidebar-header-bar"]}>
         <IconButton
-          icon={<MaskIcon />}
-          text={shouldNarrow ? undefined : Locale.Mask.Name}
+          icon={<AddIcon />}
+          text={shouldNarrow ? undefined : Locale.Home.NewChat}
           className={styles["sidebar-bar-button"]}
-          onClick={() => navigate(Path.NewChat, { state: { fromHome: true } })}
+          onClick={() => {
+            if (config.dontShowMaskSplashScreen) {
+              chatStore.newSession();
+              navigate(Path.Chat);
+            } else {
+              navigate(Path.NewChat);
+            }
+          }}
           shadow
         />
         {/* <IconButton
@@ -156,7 +163,7 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-actions"]}>
           <div className={styles["sidebar-action"] + " " + styles.mobile}>
             <IconButton
-              icon={<CloseIcon />}
+              icon={<ClearIcon />}
               onClick={() => {
                 if (confirm(Locale.Home.DeleteChat)) {
                   chatStore.deleteSession(chatStore.currentSessionIndex);
@@ -177,16 +184,12 @@ export function SideBar(props: { className?: string }) {
         </div>
         <div>
           <IconButton
-            icon={<AddIcon />}
-            text={shouldNarrow ? undefined : Locale.Home.NewChat}
-            onClick={() => {
-              if (config.dontShowMaskSplashScreen) {
-                chatStore.newSession();
-                navigate(Path.Chat);
-              } else {
-                navigate(Path.NewChat);
-              }
-            }}
+            icon={<MaskIcon />}
+            text={shouldNarrow ? undefined : Locale.Mask.Name}
+            className={styles["sidebar-action"]}
+            onClick={() =>
+              navigate(Path.NewChat, { state: { fromHome: true } })
+            }
             shadow
           />
         </div>
