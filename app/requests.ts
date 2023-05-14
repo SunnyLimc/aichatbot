@@ -1,4 +1,6 @@
 import type { ChatRequest, ChatResponse } from "./api/openai/typing";
+import { showToast } from "./components/ui-lib";
+import { ACCESS_CODE_PREFIX } from "./constant";
 import {
   Message,
   ModelConfig,
@@ -7,8 +9,6 @@ import {
   useAppConfig,
   useChatStore,
 } from "./store";
-import { showToast } from "./components/ui-lib";
-import { ACCESS_CODE_PREFIX } from "./constant";
 
 const TIME_OUT_MS = 60000;
 
@@ -66,7 +66,7 @@ export function getHeaders() {
 }
 
 export function requestOpenaiClient(path: string) {
-  const openaiUrl = useAccessStore.getState().openaiUrl;
+  const openaiUrl = useAccessStore.getState().openaiUrl();
   return (body: any, method = "POST") =>
     fetch(openaiUrl + path, {
       method,
