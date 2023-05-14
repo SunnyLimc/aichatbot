@@ -37,9 +37,3 @@ jobs:
         run: |
           echo "::error::Due to insufficient permissions, synchronization failed (as expected). Please go to the repository homepage and manually perform [Sync fork]."
           exit 1
-
-notifications:
-  email:
-    if: failure()
-    recipients:
-      - ${{ secrets.EMAIL }}$
