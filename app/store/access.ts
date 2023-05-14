@@ -11,8 +11,9 @@ export interface AccessControlStore {
 
   needCode: boolean;
   hideUserApiKey: boolean;
-  openaiUrl: string;
 
+  openaiUrl: () => string;
+  configUrl: () => string;
   updateToken: (_: string) => void;
   updateCode: (_: string) => void;
   enabledAccessControl: () => boolean;
@@ -29,7 +30,13 @@ export const useAccessStore = create<AccessControlStore>()(
       accessCode: "",
       needCode: true,
       hideUserApiKey: false,
-      openaiUrl: `${window.location.pathname}/api/openai/`,
+
+      openaiUrl() {
+        return window.location.pathname + "api/openai/";
+      },
+      configUrl() {
+        return window.location.pathname + "api/config/";
+      },
 
       enabledAccessControl() {
         get().fetch();
@@ -53,7 +60,7 @@ export const useAccessStore = create<AccessControlStore>()(
       fetch() {
         if (fetchState > 0) return;
         fetchState = 1;
-        fetch("/api/config", {
+        fetch(this.configUrl(), {
           method: "post",
           body: null,
           headers: {
