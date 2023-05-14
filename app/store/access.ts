@@ -35,7 +35,7 @@ export const useAccessStore = create<AccessControlStore>()(
         return window.location.pathname + "api/openai/";
       },
       configUrl() {
-        return window.location.pathname + "api/config/";
+        return window.location.pathname + "api/config";
       },
 
       enabledAccessControl() {

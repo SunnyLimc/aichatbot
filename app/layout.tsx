@@ -33,13 +33,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="version" content={buildConfig.commitId} />
-        <link rel="manifest" href="/site.webmanifest"></link>
+        <link rel="manifest" href="./site.webmanifest"></link>
         <link rel="preconnect" href="https://fonts.proxy.ustclug.org"></link>
         <link
           rel="stylesheet"
           href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap"
         ></link>
-        <script src="/serviceWorkerRegister.js" defer></script>
+        <script src="./serviceWorkerRegister.js" defer></script>
       </head>
       <body>{children}</body>
     </html>
