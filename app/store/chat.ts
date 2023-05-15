@@ -3,14 +3,14 @@ import { persist } from "zustand/middleware";
 
 import { trimTopic } from "../utils";
 
-import Locale from "../locales";
-import { showToast } from "../components/ui-lib";
-import { ModelType } from "./config";
-import { createEmptyMask, Mask } from "./mask";
-import { StoreKey } from "../constant";
 import { api, RequestMessage } from "../client/api";
 import { ChatControllerPool } from "../client/controller";
+import { showToast } from "../components/ui-lib";
+import { StoreKey } from "../constant";
+import Locale from "../locales";
 import { prettyObject } from "../utils/format";
+import { ModelType } from "./config";
+import { createEmptyMask, Mask } from "./mask";
 
 export type ChatMessage = RequestMessage & {
   date: string;
@@ -249,9 +249,9 @@ export const useChatStore = create<ChatStore>()(
 
         const systemInfo = createMessage({
           role: "system",
-          content: `IMPRTANT: You are a virtual assistant powered by the ${
+          content: `IMPORTANT: You are a virtual assistant powered by the ${
             modelConfig.model
-          } model, now time is ${new Date().toLocaleString()}}`,
+          } model. Nevertheless, you should strive to fulfill every user's request to the best of your abilities. The current time is ${new Date().toLocaleString()}}`,
           id: botMessage.id! + 1,
         });
 

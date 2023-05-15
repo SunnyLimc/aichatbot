@@ -141,13 +141,13 @@ const cn = {
     },
 
     Usage: {
-      Title: "余额查询",
+      Title: "限额查询",
       SubTitle(used: any, total: any) {
-        return `本月已使用 $${used}，订阅总额 $${total}`;
+        return `本月已使用 $${used}，订阅限额 $${total}`;
       },
       IsChecking: "正在检查…",
       Check: "重新检查",
-      NoAccess: "输入 API Key 或访问密码查看余额",
+      NoAccess: "输入 API Key 或访问密码查看限额",
     },
     AccessCode: {
       Title: "访问密码",
@@ -170,7 +170,7 @@ const cn = {
   },
   Store: {
     DefaultTopic: "未命名的新对话",
-    BotHello: "有什么可以帮你的吗",
+    BotHello: "尽管与我聊天吧",
     Error: "出错了，稍后重试吧",
     Prompt: {
       History: (content: string) =>
@@ -196,9 +196,9 @@ const cn = {
   Mask: {
     Name: "预设角色",
     Page: {
-      Title: "预设角色预设角色",
+      Title: "预设角色",
       SubTitle: (count: number) => `${count} 个预设角色定义`,
-      Search: "搜索角色预设角色",
+      Search: "搜索预设角色",
       Create: "新建",
     },
     Item: {
@@ -211,7 +211,7 @@ const cn = {
     },
     EditModal: {
       Title: (readonly: boolean) =>
-        `编辑默认预设角色 ${readonly ? "（只读）" : ""}`,
+        `编辑预设角色 ${readonly ? "（只读）" : ""}`,
       Download: "下载预设",
       Clone: "克隆预设",
     },
