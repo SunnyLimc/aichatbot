@@ -31,6 +31,7 @@ jobs:
           images: sunnylyx/WebChatFork
           tags: |
             type=raw,value=latest
+            type=raw,value=alpha
             type=ref,event=tag
       
       - 
