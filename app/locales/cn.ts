@@ -169,7 +169,7 @@ const cn = {
     },
   },
   Store: {
-    DefaultTopic: "未命名对话",
+    DefaultTopic: "未命名的新对话",
     BotHello: "有什么可以帮你的吗",
     Error: "出错了，稍后重试吧",
     Prompt: {
