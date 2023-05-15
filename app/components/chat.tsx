@@ -43,6 +43,7 @@ import {
 import dynamic from "next/dynamic";
 
 import { ChatControllerPool } from "../client/controller";
+import Locale from "../locales";
 import { Prompt, usePromptStore } from "../store/prompt";
 
 import { IconButton } from "./button";

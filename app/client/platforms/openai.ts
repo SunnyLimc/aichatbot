@@ -1,8 +1,8 @@
 import { REQUEST_TIMEOUT_MS } from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
 
-import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
 import Locale from "../../locales";
+import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
 
 export class ChatGPTApi implements LLMApi {
   public ChatPath = "v1/chat/completions";
@@ -10,7 +10,7 @@ export class ChatGPTApi implements LLMApi {
   public SubsPath = "dashboard/billing/subscription";
 
   path(path: string): string {
-    const openaiUrl = useAccessStore.getState().openaiUrl;
+    const openaiUrl = useAccessStore.getState().openaiUrl();
     if (openaiUrl.endsWith("/")) openaiUrl.slice(0, openaiUrl.length - 1);
     return [openaiUrl, path].join("/");
   }
