@@ -188,7 +188,8 @@ export function SideBar(props: { className?: string }) {
             text={shouldNarrow ? undefined : Locale.Mask.Name}
             className={styles["sidebar-action"]}
             onClick={() =>
-              navigate(Path.NewChat, { state: { fromHome: true } })
+              // navigate(Path.NewChat, { state: { fromHome: true } })
+              navigate(Path.Masks)
             }
             shadow
           />
