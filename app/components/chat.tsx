@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-import BrainIcon from "../icons/brain.svg";
 import CopyIcon from "../icons/copy.svg";
 import DownloadIcon from "../icons/download.svg";
 import MaxIcon from "../icons/max.svg";
@@ -175,7 +174,7 @@ function PromptToast(props: {
           role="button"
           onClick={() => props.setShowModal(true)}
         >
-          <BrainIcon />
+          <PromptIcon />
           <span className={chatStyle["prompt-toast-content"]}>
             {Locale.Context.Toast(context.length)}
           </span>
@@ -356,7 +355,7 @@ export function ChatActions(props: {
           className={`${chatStyle["chat-input-action"]} clickable`}
           onClick={props.showPromptModal}
         >
-          <BrainIcon />
+          <PromptIcon />
         </div>
       )}
 
@@ -373,12 +372,12 @@ export function ChatActions(props: {
         ) : null}
       </div>
 
-      <div
+      {/* <div
         className={`${chatStyle["chat-input-action"]} clickable`}
         onClick={props.showPromptHints}
       >
         <PromptIcon />
-      </div>
+      </div> */}
 
       {/* <div
         className={`${chatStyle["chat-input-action"]} clickable`}
