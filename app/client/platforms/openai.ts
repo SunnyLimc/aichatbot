@@ -2,7 +2,10 @@ import { REQUEST_TIMEOUT_MS } from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
 
 import { prettyObject } from "@/app/utils/format";
-import { fetchEventSource } from "@microsoft/fetch-event-source";
+import {
+  EventStreamContentType,
+  fetchEventSource,
+} from "@microsoft/fetch-event-source";
 import Locale from "../../locales";
 import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
 
@@ -61,7 +64,7 @@ export class ChatGPTApi implements LLMApi {
       };
 
       // make a fetch request
-      const reqestTimeoutId = setTimeout(
+      const requestTimeoutId = setTimeout(
         () => controller.abort(),
         REQUEST_TIMEOUT_MS,
       );
@@ -78,7 +81,14 @@ export class ChatGPTApi implements LLMApi {
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
-            clearTimeout(reqestTimeoutId);
+            clearTimeout(requestTimeoutId);
+            if (
+              res.ok &&
+              res.headers.get("content-type") !== EventStreamContentType
+            ) {
+              responseText += await res.clone().json();
+              return finish();
+            }
             if (res.status === 401) {
               let extraInfo = { error: undefined };
               try {
@@ -119,7 +129,7 @@ export class ChatGPTApi implements LLMApi {
         });
       } else {
         const res = await fetch(chatPath, chatPayload);
-        clearTimeout(reqestTimeoutId);
+        clearTimeout(requestTimeoutId);
 
         const resJson = await res.json();
         const message = this.extractMessage(resJson);
