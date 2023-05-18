@@ -22,10 +22,10 @@ import StopIcon from "../icons/pause.svg";
 import {
   BOT_HELLO,
   ChatMessage,
+  createMessage,
   DEFAULT_TOPIC,
   SubmitKey,
   Theme,
-  createMessage,
   useAccessStore,
   useAppConfig,
   useChatStore,
@@ -50,7 +50,9 @@ import chatStyle from "./chat.module.scss";
 import styles from "./home.module.scss";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import { useCommand } from "../command";
 import { LAST_INPUT_KEY, Path, REQUEST_TIMEOUT_MS } from "../constant";
+import { useMaskStore } from "../store/mask";
 import { Avatar } from "./emoji";
 import { MaskAvatar, MaskConfig } from "./mask";
 import { ListItem, Modal, showModal } from "./ui-lib";
