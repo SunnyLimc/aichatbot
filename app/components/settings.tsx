@@ -30,6 +30,7 @@ import {
 } from "../store";
 import { IconButton } from "./button";
 
+import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
 import Locale, {
   AllLangs,

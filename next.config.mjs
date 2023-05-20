@@ -2,7 +2,7 @@
 
 const nextConfig = {
 
-  assetPrefix: './',
+  assetPrefix: '.',
   env: {
     NEXT_TELEMETRY_DISABLED: 1
   },
@@ -20,6 +20,10 @@ const nextConfig = {
         source: "/google-fonts/:path*",
         destination: "https://fonts.googleapis.com/:path*",
       },
+      {
+        source: "/_next/static/css/_next/static/media/:path*",
+        destination: "/_next/static/media/:path*"
+      }
     ];
 
     const apiUrl = process.env.API_URL;
