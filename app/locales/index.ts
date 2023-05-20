@@ -1,3 +1,4 @@
+import { merge } from "../utils/merge";
 import CN from "./cn";
 import CS from "./cs";
 import DE from "./de";
@@ -6,12 +7,13 @@ import ES from "./es";
 import FR from "./fr";
 import IT from "./it";
 import JP from "./jp";
+import KO from "./ko";
 import RU from "./ru";
 import TR from "./tr";
 import TW from "./tw";
 import VI from "./vi";
 
-export type { LocaleType } from "./cn";
+export type { LocaleType, RequiredLocaleType } from "./cn";
 
 export const AllLangs = [
   "en",
@@ -26,8 +28,25 @@ export const AllLangs = [
   "vi",
   "ru",
   "cs",
+  "ko",
 ] as const;
 export type Lang = (typeof AllLangs)[number];
+
+export const ALL_LANG_OPTIONS: Record<Lang, string> = {
+  cn: "简体中文",
+  en: "English",
+  tw: "繁體中文",
+  fr: "Français",
+  es: "Español",
+  it: "Italiano",
+  tr: "Türkçe",
+  jp: "日本語",
+  de: "Deutsch",
+  vi: "Tiếng Việt",
+  ru: "Русский",
+  cs: "Čeština",
+  ko: "한국어",
+};
 
 const LANG_KEY = "lang";
 const DEFAULT_LANG = "cn";
@@ -78,7 +97,8 @@ export function changeLang(lang: Lang) {
   location.reload();
 }
 
-export default {
+const fallbackLang = EN;
+const targetLang = {
   en: EN,
   cn: CN,
   tw: TW,
@@ -91,4 +111,10 @@ export default {
   vi: VI,
   ru: RU,
   cs: CS,
+  ko: KO,
 }[getLang()] as typeof CN;
+
+// if target lang missing some fields, it will use fallback lang string
+merge(fallbackLang, targetLang);
+
+export default fallbackLang as typeof CN;

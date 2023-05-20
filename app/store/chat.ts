@@ -38,7 +38,6 @@ export interface ChatStat {
 
 export interface ChatSession {
   id: number;
-
   topic: string;
 
   memoryPrompt: string;
@@ -69,6 +68,7 @@ function createEmptySession(): ChatSession {
     },
     lastUpdate: Date.now(),
     lastSummarizeIndex: 0,
+
     mask: createEmptyMask(),
   };
 }
@@ -463,7 +463,7 @@ export const useChatStore = create<ChatStore>()(
 
         if (
           historyMsgLength > modelConfig.compressMessageLengthThreshold &&
-          session.mask.modelConfig.sendMemory
+          modelConfig.sendMemory
         ) {
           api.llm.chat({
             messages: toBeSummarizedMsgs.concat({

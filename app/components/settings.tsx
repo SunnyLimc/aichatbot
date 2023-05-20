@@ -30,9 +30,13 @@ import {
 } from "../store";
 import { IconButton } from "./button";
 
-import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
-import Locale, { AllLangs, changeLang, getLang } from "../locales";
+import Locale, {
+  AllLangs,
+  ALL_LANG_OPTIONS,
+  changeLang,
+  getLang,
+} from "../locales";
 import { Prompt, SearchService, usePromptStore } from "../store/prompt";
 import { copyToClipboard } from "../utils";
 import { Avatar, AvatarPicker } from "./emoji";
@@ -417,7 +421,7 @@ export function Settings() {
             >
               {AllLangs.map((lang) => (
                 <option value={lang} key={lang}>
-                  {Locale.Settings.Lang.Options[lang]}
+                  {ALL_LANG_OPTIONS[lang]}
                 </option>
               ))}
             </Select>
