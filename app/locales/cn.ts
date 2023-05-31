@@ -176,7 +176,7 @@ const cn = {
   },
   Store: {
     DefaultTopic: "未命名的新对话",
-    BotHello: "尽管与我聊天吧",
+    BotHello: "很高兴遇见你，想了解些什么呢？😊",
     Error: "出错了，稍后重试吧",
     Prompt: {
       History: (content: string) => "这是历史聊天总结作为前情提要：" + content,
