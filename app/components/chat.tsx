@@ -725,7 +725,8 @@ export function Chat() {
             !isUser &&
             i > 0 &&
             !(message.preview || message.content.length === 0);
-          const showTyping = message.preview || message.streaming;
+          // const showTyping = message.preview || message.streaming;
+          const showTypingStatus = message.streaming;
 
           return (
             <div
@@ -742,11 +743,11 @@ export function Chat() {
                     <MaskAvatar mask={session.mask} />
                   )}
                 </div>
-                {/* {showTyping && (
+                {showTypingStatus && (
                   <div className={styles["chat-message-status"]}>
                     {Locale.Chat.Typing}
                   </div>
-                )} */}
+                )}
                 <div className={styles["chat-message-item"]}>
                   {showActions && (
                     <div className={styles["chat-message-top-actions"]}>
@@ -796,7 +797,7 @@ export function Chat() {
                     fontSize={fontSize}
                     parentRef={scrollRef}
                     defaultShow={i >= messages.length - 10}
-                    usertyping={isUser && showTyping}
+                    usertyping={isUser && message.preview}
                   />
                 </div>
                 {!isUser && !message.preview && (

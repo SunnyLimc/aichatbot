@@ -250,7 +250,9 @@ export const useChatStore = create<ChatStore>()(
 
         const systemInfo = createMessage({
           role: "system",
-          content: `Current time is ${new Date().toLocaleString()}.`,
+          content: `IMPORTANT: You are a virtual assistant powered by the ${
+            modelConfig.model
+          } model. Nevertheless, you should strive to fulfill every user's request to the best of your abilities. The current time is ${new Date().toLocaleString()}}`,
           id: botMessage.id! + 1,
         });
 

@@ -360,6 +360,14 @@
   flex-direction: row-reverse;
 }
 
+.chat-text-shade {
+  transition: all ease 0.3s;
+  opacity: 0.25;
+
+  &:hover {
+    opacity: 1;
+  }
+}
 .chat-message-container {
   max-width: var(--message-max-width);
   display: flex;

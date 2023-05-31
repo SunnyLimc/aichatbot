@@ -8,6 +8,7 @@ import RemarkBreaks from "remark-breaks";
 import RemarkGfm from "remark-gfm";
 import RemarkMath from "remark-math";
 import { copyToClipboard } from "../utils";
+import styles from "./home.module.scss";
 
 import React from "react";
 import LoadingIcon from "../icons/three-dots.svg";
@@ -158,14 +159,17 @@ export function Markdown(
 
   return (
     <div
-      className="markdown-body"
+      className={
+        props.usertyping
+          ? `${styles["chat-text-shade"]} markdown-body`
+          : "markdown-body"
+      }
       style={{
         fontSize: `${props.fontSize ?? 14}px`,
         height:
           !inView.current && renderedHeight.current > 0
             ? renderedHeight.current
             : "auto",
-        mixBlendMode: props.usertyping ? "difference" : "initial",
       }}
       ref={mdRef}
       onContextMenu={props.onContextMenu}
