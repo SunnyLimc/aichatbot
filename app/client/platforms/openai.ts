@@ -6,6 +6,8 @@ import {
   EventStreamContentType,
   fetchEventSource,
 } from "@fortaine/fetch-event-source";
+import Locale from "../../locales";
+import { ChatOptions, LLMApi, LLMUsage, getHeaders } from "../api";
 
 export class ChatGPTApi implements LLMApi {
   public ChatPath = "v1/chat/completions";
