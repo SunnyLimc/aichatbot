@@ -5,9 +5,7 @@ import { prettyObject } from "@/app/utils/format";
 import {
   EventStreamContentType,
   fetchEventSource,
-} from "@microsoft/fetch-event-source";
-import Locale from "../../locales";
-import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
+} from "@fortaine/fetch-event-source";
 
 export class ChatGPTApi implements LLMApi {
   public ChatPath = "v1/chat/completions";
@@ -145,6 +143,7 @@ export class ChatGPTApi implements LLMApi {
           },
           onerror(e) {
             options.onError?.(e);
+            throw e;
           },
           openWhenHidden: true,
         });

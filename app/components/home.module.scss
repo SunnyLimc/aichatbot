@@ -141,7 +141,7 @@
 
 .sidebar-sub-title {
   font-size: 12px;
-  font-weight: 400px;
+  font-weight: 400;
   animation: slide-in ease 0.3s;
 }
 
@@ -556,11 +556,6 @@
   .chat-input-send {
     bottom: 30px;
   }
-}
-
-.export-content {
-  white-space: break-spaces;
-  padding: 10px !important;
 }
 
 .loading-content {

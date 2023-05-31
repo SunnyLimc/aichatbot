@@ -23,7 +23,11 @@ const nextConfig = {
       {
         source: "/_next/static/css/_next/static/media/:path*",
         destination: "/_next/static/media/:path*"
-      }
+      },
+      {
+        source: "/sharegpt",
+        destination: "https://sharegpt.com/api/conversations",
+      },
     ];
 
     const apiUrl = process.env.API_URL;
