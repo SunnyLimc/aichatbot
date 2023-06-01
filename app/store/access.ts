@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { StoreKey } from "../constant";
 import { getHeaders } from "../client/api";
+import { StoreKey } from "../constant";
 import { BOT_HELLO } from "./chat";
 import { ALL_MODELS } from "./config";
 
 export interface AccessControlStore {
   accessCode: string;
   token: string;
+  titleAlias: string;
 
   needCode: boolean;
   hideUserApiKey: boolean;
@@ -16,6 +17,7 @@ export interface AccessControlStore {
   configUrl: () => string;
   updateToken: (_: string) => void;
   updateCode: (_: string) => void;
+  updateTitleAlias: (_: string) => void;
   enabledAccessControl: () => boolean;
   isAuthorized: () => boolean;
   fetch: () => void;
@@ -28,6 +30,7 @@ export const useAccessStore = create<AccessControlStore>()(
     (set, get) => ({
       token: "",
       accessCode: "",
+      titleAlias: "",
       needCode: true,
       hideUserApiKey: false,
 
@@ -49,6 +52,9 @@ export const useAccessStore = create<AccessControlStore>()(
       updateToken(token: string) {
         set(() => ({ token }));
       },
+      updateTitleAlias(titleAlias: string) {
+        set(() => ({ titleAlias }));
+      },
       isAuthorized() {
         get().fetch();
 
@@ -68,7 +74,7 @@ export const useAccessStore = create<AccessControlStore>()(
           },
         })
           .then((res) => res.json())
-          .then((res: DangerConfig) => {
+          .then((res: DynamicConfig) => {
             console.log("[Config] got config from server", res);
             set(() => ({ ...res }));
 
@@ -79,7 +85,10 @@ export const useAccessStore = create<AccessControlStore>()(
                 }
               });
             }
-
+            if (res.titleAlias?.length) {
+              this.updateTitleAlias(res.titleAlias);
+              document.title = "AI ChatBot" + " (" + res.titleAlias + ")";
+            }
             if ((res as any).botHello) {
               BOT_HELLO.content = (res as any).botHello;
             }

@@ -22,6 +22,7 @@ import {
 
 import dynamic from "next/dynamic";
 import { Link, useNavigate } from "react-router-dom";
+import { useAccessStore } from "../store";
 import { useMobileScreen } from "../utils";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
@@ -105,6 +106,7 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
+  const titleAlias = useAccessStore().titleAlias;
 
   useHotKey();
 
@@ -115,7 +117,15 @@ export function SideBar(props: { className?: string }) {
       }`}
     >
       <div className={styles["sidebar-header"]}>
-        <div className={styles["sidebar-title"]}>AI ChatBot</div>
+        <div className={styles["sidebar-title"]}>
+          AI ChatBot
+          {titleAlias !== "" && (
+            <span className={styles["sidebar-title-alias"]}>
+              {" "}
+              ({titleAlias})
+            </span>
+          )}
+        </div>
         <div className={styles["sidebar-sub-title"]}>
           Meet the feture of AI Chat.
         </div>

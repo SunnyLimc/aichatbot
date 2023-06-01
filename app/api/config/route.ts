@@ -6,18 +6,19 @@ const serverConfig = getServerSideConfig();
 
 // Danger! Don not write any secret value here!
 // 警告！不要在这里写入任何敏感信息！
-const DANGER_CONFIG = {
+const DYNAMIC_CONFIG = {
   needCode: serverConfig.needCode,
   hideUserApiKey: serverConfig.hideUserApiKey,
   enableGPT4: serverConfig.enableGPT4,
+  titleAlias: serverConfig.titleAlias,
 };
 
 declare global {
-  type DangerConfig = typeof DANGER_CONFIG;
+  type DynamicConfig = typeof DYNAMIC_CONFIG;
 }
 
 async function handle() {
-  return NextResponse.json(DANGER_CONFIG);
+  return NextResponse.json(DYNAMIC_CONFIG);
 }
 
 export const GET = handle;
