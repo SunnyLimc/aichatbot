@@ -211,12 +211,22 @@
 }
 
 .chat-item-count,
-.chat-item-date {
+.chat-item-date,
+.chat-item-mask,
+.chat-item-space {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
+.chat-item-space {
+  min-width: .5rem;
+}
+
+.chat-item-mask {
+  flex-shrink: 1;
+}
 .narrow-sidebar {
   .sidebar-title,
   .sidebar-sub-title {
