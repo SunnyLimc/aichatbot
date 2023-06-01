@@ -6,8 +6,12 @@ import "./styles/markdown.scss";
 
 const buildConfig = getBuildConfig();
 
+const TITLE_ALIAS = process.env.TITLE_ALIAS
+  ? " (" + process.env.TITLE_ALIAS + ")"
+  : "";
+
 export const metadata = {
-  title: "AI ChatBot",
+  title: "AI ChatBot" + TITLE_ALIAS,
   description: "Your personal AI Chat Bot.",
   viewport: {
     width: "device-width",
@@ -19,7 +23,7 @@ export const metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "AI ChatBot",
+    title: "AI ChatBot" + TITLE_ALIAS,
     statusBarStyle: "default",
   },
 };
