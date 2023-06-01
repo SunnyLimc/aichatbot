@@ -106,7 +106,7 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
-  const titleAlias = useAccessStore().titleAlias;
+  const titleAlias = useAccessStore().getTitleAlias();
 
   useHotKey();
 

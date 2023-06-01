@@ -18,6 +18,7 @@ export interface AccessControlStore {
   updateToken: (_: string) => void;
   updateCode: (_: string) => void;
   updateTitleAlias: (_: string) => void;
+  getTitleAlias: () => string;
   enabledAccessControl: () => boolean;
   isAuthorized: () => boolean;
   fetch: () => void;
@@ -55,6 +56,11 @@ export const useAccessStore = create<AccessControlStore>()(
       updateTitleAlias(titleAlias: string) {
         set(() => ({ titleAlias }));
       },
+      getTitleAlias() {
+        get().fetch();
+
+        return get().titleAlias;
+      },
       isAuthorized() {
         get().fetch();
 
@@ -88,6 +94,8 @@ export const useAccessStore = create<AccessControlStore>()(
             if (res.titleAlias?.length) {
               this.updateTitleAlias(res.titleAlias);
               document.title = "AI ChatBot" + " (" + res.titleAlias + ")";
+            } else {
+              this.updateTitleAlias("");
             }
             if ((res as any).botHello) {
               BOT_HELLO.content = (res as any).botHello;
