@@ -25,7 +25,7 @@ export const DEFAULT_CONFIG = {
   sendPreviewBubble: true,
   sidebarWidth: 300,
 
-  disablePromptHint: true,
+  disablePromptHint: false,
 
   dontShowMaskSplashScreen: true, // dont show splash screen when create chat
 
@@ -36,7 +36,7 @@ export const DEFAULT_CONFIG = {
     presence_penalty: 0,
     sendMemory: false,
     historyMessageCount: 8,
-    compressMessageLengthThreshold: 1000,
+    compressMessageLengthThreshold: 4096,
   },
 };
 
@@ -166,8 +166,8 @@ export const useAppConfig = create<ChatConfigStore>()(
         const state = persistedState as ChatConfig;
         state.modelConfig.sendMemory = false;
         state.modelConfig.historyMessageCount = 8;
-        state.modelConfig.compressMessageLengthThreshold = 1000;
-        state.dontShowMaskSplashScreen = false;
+        state.modelConfig.compressMessageLengthThreshold = 4096;
+        state.dontShowMaskSplashScreen = true;
 
         return state;
       },
