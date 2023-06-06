@@ -26,92 +26,93 @@ export interface AccessControlStore {
 
 let fetchState = 0; // 0 not fetch, 1 fetching, 2 done
 
-export const useAccessStore = create<AccessControlStore>()(
-  persist(
-    (set, get) => ({
-      token: "",
-      accessCode: "",
-      titleAlias: "",
-      needCode: true,
-      hideUserApiKey: false,
+export const getAccessStore = (path = window.location.pathname) =>
+  create<AccessControlStore>()(
+    persist(
+      (set, get) => ({
+        token: "",
+        accessCode: "",
+        titleAlias: "",
+        needCode: true,
+        hideUserApiKey: false,
 
-      openaiUrl() {
-        return window.location.pathname + "api/openai/";
-      },
-      configUrl() {
-        return window.location.pathname + "api/config";
-      },
+        openaiUrl() {
+          return window.location.pathname + "api/openai/";
+        },
+        configUrl() {
+          return window.location.pathname + "api/config";
+        },
 
-      enabledAccessControl() {
-        get().fetch();
+        enabledAccessControl() {
+          get().fetch();
 
-        return get().needCode;
-      },
-      updateCode(code: string) {
-        set(() => ({ accessCode: code }));
-      },
-      updateToken(token: string) {
-        set(() => ({ token }));
-      },
-      updateTitleAlias(titleAlias: string) {
-        set(() => ({ titleAlias }));
-      },
-      getTitleAlias() {
-        get().fetch();
+          return get().needCode;
+        },
+        updateCode(code: string) {
+          set(() => ({ accessCode: code }));
+        },
+        updateToken(token: string) {
+          set(() => ({ token }));
+        },
+        updateTitleAlias(titleAlias: string) {
+          set(() => ({ titleAlias }));
+        },
+        getTitleAlias() {
+          get().fetch();
 
-        return get().titleAlias;
-      },
-      isAuthorized() {
-        get().fetch();
+          return get().titleAlias;
+        },
+        isAuthorized() {
+          get().fetch();
 
-        // has token or has code or disabled access control
-        return (
-          !!get().token || !!get().accessCode || !get().enabledAccessControl()
-        );
-      },
-      fetch() {
-        if (fetchState > 0) return;
-        fetchState = 1;
-        fetch(this.configUrl(), {
-          method: "post",
-          body: null,
-          headers: {
-            ...getHeaders(),
-          },
-        })
-          .then((res) => res.json())
-          .then((res: DynamicConfig) => {
-            console.log("[Config] got config from server", res);
-            set(() => ({ ...res }));
-
-            if (!res.enableGPT4) {
-              ALL_MODELS.forEach((model) => {
-                if (model.name.startsWith("gpt-4")) {
-                  (model as any).available = false;
-                }
-              });
-            }
-            if (res.titleAlias?.length) {
-              this.updateTitleAlias(res.titleAlias);
-              document.title = "AI ChatBot" + " (" + res.titleAlias + ")";
-            } else {
-              this.updateTitleAlias("");
-            }
-            if ((res as any).botHello) {
-              BOT_HELLO.content = (res as any).botHello;
-            }
+          // has token or has code or disabled access control
+          return (
+            !!get().token || !!get().accessCode || !get().enabledAccessControl()
+          );
+        },
+        fetch() {
+          if (fetchState > 0) return;
+          fetchState = 1;
+          fetch(this.configUrl(), {
+            method: "post",
+            body: null,
+            headers: {
+              ...getHeaders(),
+            },
           })
-          .catch(() => {
-            console.error("[Config] failed to fetch config");
-          })
-          .finally(() => {
-            fetchState = 2;
-          });
+            .then((res) => res.json())
+            .then((res: DynamicConfig) => {
+              console.log("[Config] got config from server", res);
+              set(() => ({ ...res }));
+
+              if (!res.enableGPT4) {
+                ALL_MODELS.forEach((model) => {
+                  if (model.name.startsWith("gpt-4")) {
+                    (model as any).available = false;
+                  }
+                });
+              }
+              if (res.titleAlias?.length) {
+                this.updateTitleAlias(res.titleAlias);
+                document.title = "AI ChatBot" + " (" + res.titleAlias + ")";
+              } else {
+                this.updateTitleAlias("");
+              }
+              if ((res as any).botHello) {
+                BOT_HELLO.content = (res as any).botHello;
+              }
+            })
+            .catch(() => {
+              console.error("[Config] failed to fetch config");
+            })
+            .finally(() => {
+              fetchState = 2;
+            });
+        },
+      }),
+      {
+        name: StoreKey.Access,
+        version: 1,
       },
-    }),
-    {
-      name: StoreKey.Access,
-      version: 1,
-    },
-  ),
-);
+    ),
+  );
