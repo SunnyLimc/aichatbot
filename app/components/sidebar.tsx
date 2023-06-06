@@ -22,7 +22,7 @@ import {
 
 import dynamic from "next/dynamic";
 import { Link, useNavigate } from "react-router-dom";
-import { getAccessStore } from "../store";
+import { useAccessStore } from "../store";
 import { useMobileScreen } from "../utils";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
@@ -106,7 +106,7 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
-  const titleAlias = getAccessStore(window.location.pathname)().getTitleAlias();
+  const titleAlias = useAccessStore().getTitleAlias();
 
   useHotKey();
 

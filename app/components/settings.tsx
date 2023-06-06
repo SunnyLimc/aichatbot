@@ -23,7 +23,7 @@ import {
 import {
   SubmitKey,
   Theme,
-  getAccessStore,
+  useAccessStore,
   useAppConfig,
   useChatStore,
   useUpdateStore,
@@ -33,8 +33,8 @@ import { IconButton } from "./button";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
 import Locale, {
-  ALL_LANG_OPTIONS,
   AllLangs,
+  ALL_LANG_OPTIONS,
   changeLang,
   getLang,
 } from "../locales";
@@ -250,7 +250,7 @@ export function Settings() {
     });
   }
 
-  const accessStore = getAccessStore(window.location.pathname)();
+  const accessStore = useAccessStore();
   const enabledAccessControl = useMemo(
     () => accessStore.enabledAccessControl(),
     // eslint-disable-next-line react-hooks/exhaustive-deps

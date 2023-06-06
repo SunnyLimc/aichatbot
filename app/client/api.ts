@@ -1,5 +1,5 @@
 import { ACCESS_CODE_PREFIX } from "../constant";
-import { ChatMessage, ModelType, getAccessStore } from "../store";
+import { ChatMessage, ModelConfig, ModelType, useAccessStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
 
 export const ROLES = ["system", "user", "assistant"] as const;
@@ -94,7 +94,7 @@ export class ClientApi {
 export const api = new ClientApi();
 
 export function getHeaders() {
-  const accessStore = getAccessStore(window.location.pathname).getState();
+  const accessStore = useAccessStore.getState();
   let headers: Record<string, string> = {
     "Content-Type": "application/json",
     "x-requested-with": "XMLHttpRequest",

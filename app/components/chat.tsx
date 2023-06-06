@@ -22,11 +22,11 @@ import StopIcon from "../icons/pause.svg";
 import {
   BOT_HELLO,
   ChatMessage,
+  createMessage,
   DEFAULT_TOPIC,
   SubmitKey,
   Theme,
-  createMessage,
-  getAccessStore,
+  useAccessStore,
   useAppConfig,
   useChatStore,
 } from "../store";
@@ -580,7 +580,7 @@ export function Chat() {
 
   const context: RenderMessage[] = session.mask.context.slice();
 
-  const accessStore = getAccessStore(window.location.pathname)();
+  const accessStore = useAccessStore();
 
   if (
     context.length === 0 &&
